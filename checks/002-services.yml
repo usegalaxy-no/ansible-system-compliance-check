@@ -39,8 +39,6 @@
     - galaxy
     - nfs-server
     - autofs
-    - cvmfs-data.usegalaxy.no.mount
-    - cvmfs-data.galaxyproject.org.mount
     - nginx
     - docker
   loop_control:
