@@ -1,0 +1,10 @@
+- name: Check if cvmfs nfs are mounted
+  when: slurmnode == yes
+  command: mount
+  ignore_errors: yes
+  changed_when: false
+  register: mount_status
+  failed_when: >
+    ("usegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
+    ("usegalaxy.no:/cvmfs/data.usegalaxy.no on /cvmfs/data.usegalaxy.no" not in mount_status.stdout)
+  tags: check_slurmnode
