@@ -10,12 +10,14 @@
   tags: check_services
 
 - name: Check if nga is running
-  command: /usr/bin/systemctl status {{ item }}
+  command: /usr/bin/systemctl status {{ service_item }}
   when: mainnode is defined
   with_items:
     - nga-master
     - nga-runner@001
     - nga-runner@002
+  loop_control:
+    loop_var: service_item
   ignore_errors: yes 
   changed_when: false
   register: service_status
