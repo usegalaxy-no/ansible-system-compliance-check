@@ -4,7 +4,7 @@
 Test services and configuration on the server nodes (routinely and as part of a manual check after reboot)
 Just a check playbook, no changes to the systems.
 
-work in progress.
+
 
 
 
