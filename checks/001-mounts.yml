@@ -1,3 +1,5 @@
+---
+
 - name: Check if cvmfs nfs are mounted
   when: cvmfsnfsclient is defined
   command: mount

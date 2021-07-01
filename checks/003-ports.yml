@@ -1,0 +1,20 @@
+---
+
+- name: check if ports on main node are open
+  when: mainnode is defined
+  wait_for:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: "{{ mport_item }}"
+    state: started
+    delay: 0
+    timeout: 3
+  ignore_errors: yes
+  with_items:
+    - 80
+    - 22
+    - 443
+    - 8008
+    - 2049
+  loop_control:
+    loop_var: mport_item
+  tags: check_ports
