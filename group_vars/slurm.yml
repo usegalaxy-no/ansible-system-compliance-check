@@ -1,1 +1,2 @@
-slurmnode: 'yes'
+slurmnfsnode: 'yes'
+galaxynfsnode: 'yes'
