@@ -7,17 +7,55 @@
   failed_when: >
     ("active (running)" in service_status.stdout) or
     ("enabled; vendor preset" in service_status.stdout)
+  tags: check_services\
+
+- name: Check if generic services  are running
+  command: /usr/bin/systemctl status {{ gservice_item }}
+  with_items:
+    - fail2ban
+    - firewalld
+    - ssh
+  loop_control:
+    loop_var: gservice_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (running)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
 
-- name: Check if nga is running
-  command: /usr/bin/systemctl status {{ service_item }}
+- name: Check if services on main node are running usegalaxy.no
+  command: /usr/bin/systemctl status {{ mservice_item }}
   when: mainnode is defined
   with_items:
     - nga-master
     - nga-runner@001
     - nga-runner@002
+    - galaxy
+    - nfs-server
+    - autofs
+    - cvmfs-data.usegalaxy.no.mount
+    - cvmfs-data.galaxyproject.org.mount
+    - nginx
+    - docker
   loop_control:
-    loop_var: service_item
+    loop_var: mservice_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (running)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
+  tags: check_services
+
+- name: Check if  services on slurm nodes are running
+  command: /usr/bin/systemctl status {{ gservice_item }}
+  when: slurmnode is defined
+  with_items:
+    - slurmd
+  loop_control:
+    loop_var: gservice_item
   ignore_errors: yes 
   changed_when: false
   register: service_status

@@ -1,2 +1,3 @@
 cvmfsnfsclient: 'yes'
 galaxynfsclient: 'yes'
+slurmnode: 'yes'
