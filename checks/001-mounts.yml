@@ -1,5 +1,5 @@
 - name: Check if cvmfs nfs are mounted
-  when: slurmnode == 'yes'
+  when: slurmnode is defined
   command: mount
   ignore_errors: yes
   changed_when: false
