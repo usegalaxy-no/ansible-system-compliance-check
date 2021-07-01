@@ -37,7 +37,6 @@
     - nga-runner@001
     - nga-runner@002
     - galaxy
-    - nfs-server
     - autofs
     - nginx
     - docker
@@ -50,6 +49,37 @@
     ("active (running)" not in service_status.stdout) or
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
+
+- name: Check if services on main node are running usegalaxy.no
+  command: /usr/bin/systemctl status {{ m2service_item }}
+  when: mainnode is defined
+  with_items:
+    - nfs-server
+  loop_control:
+    loop_var: m2service_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (exited)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
+  tags: check_services
+
+- name: Check if services on main node are running usegalaxy.no
+  command: /usr/bin/systemctl status {{ m3service_item }}
+  when: mainnode is defined
+  with_items:
+    - cvmfs-data.usegalaxy.no.mount
+    - cvmfs-data.galaxyproject.org.mount
+  loop_control:
+    loop_var: m3service_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (mounted)" not in service_status.stdout)
+  tags: check_services
+
 
 - name: Check if  services on slurm nodes are running
   command: /usr/bin/systemctl status {{ gservice_item }}
