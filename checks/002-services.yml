@@ -14,7 +14,11 @@
   with_items:
     - fail2ban
     - firewalld
-    - ssh
+    - sshd
+    - rsyslog
+    - telegraf
+    - metricbeat
+    - filebeat
   loop_control:
     loop_var: gservice_item
   ignore_errors: yes 
