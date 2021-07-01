@@ -1,8 +1,6 @@
 - name: Check if autofs has been disabled on slurm nodes
-  command: /usr/bin/systemctl status {{ item }}
+  command: /usr/bin/systemctl status autofs
   when: cvmfsnfsclient is defined
-  with_items:
-    - autofs
   ignore_errors: yes 
   changed_when: false
   register: service_status
