@@ -43,10 +43,12 @@ check modules
 
 002-services
 
-- standard system services
-- services related to galaxy (galaxy, nga, nginx)
-- additional services (slurm, docker)
+- standard system services (firewall, fail2ban, sshd, syslog)
+- services related to galaxy (galaxy, nga, nginx) on the main node
+- additional services (slurm, docker) 
 - check if autofs is disabled on slurm nodes
+- db node services postgres & rabbitmq
+- postfix on db node
 
 
 
