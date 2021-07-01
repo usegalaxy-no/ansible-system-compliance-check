@@ -97,3 +97,22 @@
     ("active (running)" not in service_status.stdout) or
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
+
+- name: Check if services on database node are running db.usegalaxy.no
+  command: /usr/bin/systemctl status {{ dbservice_item }}
+  when: dbnode is defined
+  with_items:
+    - httpd
+    - rabbitmq-server
+    - postgresql-10
+    - postfix
+    - autofs
+  loop_control:
+    loop_var: dbservice_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (running)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
+  tags: check_services

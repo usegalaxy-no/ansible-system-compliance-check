@@ -18,3 +18,24 @@
   loop_control:
     loop_var: mport_item
   tags: check_ports
+
+- name: check if ports on db node are open
+  when: dbnode is defined
+  wait_for:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: "{{ dbport_item }}"
+    state: started
+    delay: 0
+    timeout: 3
+  ignore_errors: yes
+  with_items:
+    - 80
+    - 22
+    - 443
+    - 25
+    - 1581
+    - 1582
+    - 5432
+  loop_control:
+    loop_var: dbport_item
+  tags: check_ports
