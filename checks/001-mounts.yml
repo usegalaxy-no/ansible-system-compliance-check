@@ -6,6 +6,6 @@
   changed_when: false
   register: mount_status
   failed_when: >
-    ("usegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
+    ("Xusegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
     ("usegalaxy.no:/cvmfs/data.usegalaxy.no on /cvmfs/data.usegalaxy.no" not in mount_status.stdout)
   tags: check_slurmnode
