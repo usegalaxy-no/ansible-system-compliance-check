@@ -1,6 +1,5 @@
 - name: Check if cvmfs nfs are mounted
-  when:
-    - cvmfsnfsclient is defined
+  when: cvmfsnfsclient is defined
   command: mount
   ignore_errors: yes
   changed_when: false
@@ -8,15 +7,14 @@
   failed_when: >
     ("usegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
     ("usegalaxy.no:/cvmfs/data.usegalaxy.no on /cvmfs/data.usegalaxy.no" not in mount_status.stdout)
-  tags: check_node
+  tags: check_mounts
 
 - name: Check if  nfs are mounted
-  when:
-    - galaxynfsclient is defined
+  when: galaxynfsclient is defined
   command: mount
   ignore_errors: yes
   changed_when: false
   register: mount_status
   failed_when: >
     ("usegalaxy.no:/srv/galaxy on /srv/galaxy type" not in mount_status.stdout)
-  tags: check_node
+  tags: check_mounts

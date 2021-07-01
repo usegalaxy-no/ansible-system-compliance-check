@@ -1,2 +1,2 @@
-slurmnfsnode: 'yes'
-galaxynfsnode: 'yes'
+cvmfsnfsclient: 'yes'
+galaxynfsclient: 'yes'
