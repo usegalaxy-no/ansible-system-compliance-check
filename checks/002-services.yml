@@ -8,3 +8,18 @@
     ("active (running)" in service_status.stdout) or
     ("enabled; vendor preset" in service_status.stdout)
   tags: check_services
+
+- name: Check if nga is running
+  command: /usr/bin/systemctl status {{ item }}
+  when: mainnode is defined
+  with_items:
+    - nga-master
+    - nga-runner@001
+    - nga-runner@002
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (running)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
+  tags: check_services
