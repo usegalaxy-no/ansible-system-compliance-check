@@ -18,3 +18,16 @@
   failed_when: >
     ("usegalaxy.no:/srv/galaxy on /srv/galaxy type" not in mount_status.stdout)
   tags: check_mounts
+
+- name: Check if cvmfs nfs are mounted
+  when: mainnode is defined
+  command: mount
+  ignore_errors: yes
+  changed_when: false
+  register: mount_status
+  failed_when: >
+    ("/etc/auto.cvmfs on /cvmfs" not in mount_status.stdout) or
+    ("cvmfs2 on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
+    ("cvmfs2 on /cvmfs/data.usegalaxy.no) or
+    ("cvmfs2 on /cvmfs/cvmfs-config.galaxyproject.org" not in mount_status.stdout)
+  tags: check_mounts
