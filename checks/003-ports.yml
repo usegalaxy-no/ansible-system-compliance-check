@@ -34,7 +34,6 @@
     - 443
     - 25
     - 1581
-    - 1582
     - 5432
   loop_control:
     loop_var: dbport_item
