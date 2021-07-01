@@ -46,6 +46,7 @@ check modules
 - standard system services
 - services related to galaxy (galaxy, nga, nginx)
 - additional services (slurm, docker)
+- check if autofs is disabled on slurm nodes
 
 
 
