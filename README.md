@@ -22,7 +22,6 @@ defined in group_vars/GROUPNAME.yml , Group name refers to the entries in the ho
 Dependencies
 ------------
 
-
 manual execution
 ----------------
 
