@@ -1,0 +1,14 @@
+---
+
+- name: Check nfs exports on the main node
+  when: mainnode is defined
+  command: showmount -e localhost
+  ignore_errors: yes
+  changed_when: false
+  register: exports_status
+  failed_when: >
+    ("/cvmfs/data.usegalaxy.no" not in exports_status.stdout) or
+    ("/cvmfs/data.galaxyproject.org" not in exports_status.stdout) or
+    ("/data/part0" not in exports_status.stdout) or
+    ("/srv/galaxy" not in exports_status.stdout)
+  tags: check_filesystem

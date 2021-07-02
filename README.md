@@ -63,3 +63,8 @@ check modules
     - main node:
       /data/part0/
       /data/part0/tmp/galaxy-var-tmp
+
+
+005-nfsexports
+
+- check whether the nfs-shares are exported correctly
