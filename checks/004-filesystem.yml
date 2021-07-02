@@ -1,0 +1,22 @@
+---
+
+- name: Check permission data/part0/ on the main node
+  when: mainnode is defined
+  command: ls -lisad /data/part0/
+  ignore_errors: yes
+  changed_when: false
+  register: permission_status
+  failed_when: >
+    ("drwxr-x---." not in permission_status.stdout) or
+    ("galaxy galaxy" not in permission_status.stdout)
+  tags: check_filesystem
+
+- name: Check permission /data/part0/tmp/galaxy-var-tmp on the main node
+  when: mainnode is defined
+  command: ls -lisad /data/part0/tmp/galaxy-var-tmp
+  ignore_errors: yes
+  changed_when: false
+  register: permission_status
+  failed_when: >
+    ("drwxrwxrwx" not in permission_status.stdout)
+  tags: check_filesystem

@@ -55,3 +55,11 @@ check modules
 003-ports
 
 - open tcp ports, which are required for the services (check from localhost only)
+
+
+004-filesystem
+
+- Checks the set permissions in directories and files
+    - main node:
+      /data/part0/
+      /data/part0/tmp/galaxy-var-tmp
