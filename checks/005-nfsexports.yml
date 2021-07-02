@@ -11,4 +11,4 @@
     ("/cvmfs/data.galaxyproject.org" not in exports_status.stdout) or
     ("/data/part0" not in exports_status.stdout) or
     ("/srv/galaxy" not in exports_status.stdout)
-  tags: check_filesystem
+  tags: check_nfsexports

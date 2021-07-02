@@ -67,4 +67,9 @@ check modules
 
 005-nfsexports
 
-- check whether the nfs-shares are exported correctly
+- checks whether the nfs-shares are exported correctly
+
+
+006-postgres
+
+- checks whether the postgresql db is open and readable
