@@ -18,5 +18,5 @@
   changed_when: false
   register: permission_status
   failed_when: >
-    ("drwxrwxrwx" not in permission_status.stdout)
+    ("drwxrwxr--" not in permission_status.stdout)
   tags: check_filesystem
