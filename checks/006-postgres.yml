@@ -6,5 +6,5 @@
   ignore_errors: yes 
   changed_when: false
   register: psql_status
-  failed_when: psql_status.stdout | length > 10
+  failed_when: psql_status.stdout | length < 1
   tags: check_postgres
