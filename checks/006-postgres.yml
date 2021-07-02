@@ -1,7 +1,7 @@
 ---
 
 - name: Check if postgres is running and accessible database node db.usegalaxy.no
-  shell: cd /var/tmp; sudo -u postgres psql -h /tmp usegalaxy -c "select username from galaxy_user 2>/dev/null"
+  shell: cd /var/tmp; sudo -u postgres psql -h /tmp usegalaxy -c "select username from galaxy_user" 2>/dev/null
   when: dbnode is defined
   ignore_errors: yes 
   changed_when: false
