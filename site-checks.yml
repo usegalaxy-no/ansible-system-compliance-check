@@ -4,6 +4,12 @@
     - all
   become: true
   tasks:
-  - include_tasks: "{{ item }}"
-    with_fileglob: [ "checks/*.yml" ]
+  - include_tasks: "cheks/{{ item }}"
+    with_items:
+      - 001-mounts.yml
+      - 002-services.yml
+      - 003-ports.yml
+      - 004-filesystem.yml
+      - 005-nfsexports.yml
+      - 006-postgres.yml
     ignore_errors: true

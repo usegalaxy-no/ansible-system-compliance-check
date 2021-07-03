@@ -1,0 +1,9 @@
+---
+- name: compliance checks
+  hosts:
+    - all
+  become: true
+  tasks:
+  - include_tasks: "{{ item }}"
+    with_fileglob: [ "checks/*.yml" ]
+    ignore_errors: true
