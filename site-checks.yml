@@ -4,12 +4,36 @@
     - all
   become: true
   tasks:
-  - include_tasks: "cheks/{{ item }}"
-    with_items:
-      - 001-mounts.yml
-      - 002-services.yml
-      - 003-ports.yml
-      - 004-filesystem.yml
-      - 005-nfsexports.yml
-      - 006-postgres.yml
-    ignore_errors: true
+
+  - name: conection test
+    when: ansible_system == 'Linux'
+    command: /bin/true
+    ignore_unreachable: yes
+    tags:
+      - check_connect
+
+  - include_tasks: checks/001-mounts.yml
+    tags:
+      - check_mounts
+
+  - include_tasks: checks/002-services.yml
+    tags:
+      - check_services
+
+  - include_tasks: checks/003-ports.yml
+    tags:
+      - check_ports
+
+  - include_tasks: checks/004-filesystem.yml
+    tags:
+      - check_filesystem
+
+  - include_tasks: checks/005-nfsexports.yml
+    tags:
+      - check_nfsexports
+
+  - include_tasks: checks/006-postgres.yml
+    tags:
+      - check_postgres
+
+  ignore_errors: true
