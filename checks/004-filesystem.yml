@@ -1,6 +1,6 @@
 ---
 
-- name: Check permission data/part0/ on the main node
+- name: 004 Check permission data/part0/ on the main node
   when: mainnode is defined
   command: ls -lisad /data/part0/
   ignore_errors: yes
@@ -11,7 +11,7 @@
     ("galaxy galaxy" not in permission_status.stdout)
   tags: check_filesystem
 
-- name: Check permission /data/part0/tmp/galaxy-var-tmp on the main node
+- name: 004 Check permission /data/part0/tmp/galaxy-var-tmp on the main node
   when: mainnode is defined
   command: ls -lisad /data/part0/tmp/galaxy-var-tmp
   ignore_errors: yes
@@ -21,12 +21,12 @@
     ("drwxrwxrwx" not in permission_status.stdout)
   tags: check_filesystem
   
-- name: Check permission letsencrypt key files on the db node
+- name: 004 Check permission letsencrypt key files on the db node
   when: dbnode is defined
-  command: 
+  command: ls -lisa /etc/letsencrypt/archive/db.usegalaxy.no/privkey*
   ignore_errors: yes
   changed_when: false
-  register: permission_status
+  register: keypermission_status
   failed_when: >
-    ("---" in permission_status.stdout)
+    ("---" in keypermission_status.stdout)
   tags: check_filesystem

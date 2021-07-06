@@ -36,4 +36,8 @@
     tags:
       - check_postgres
 
+  - include_tasks: checks/007-rabbitmq.yml 
+    tags:
+      - check_rabbitmq
+
   ignore_errors: true

@@ -1,6 +1,6 @@
 ---
 
-- name: Check nfs exports on the main node
+- name: 005 Check nfs exports on the main node
   when: mainnode is defined
   command: showmount -e localhost
   ignore_errors: yes

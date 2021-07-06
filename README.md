@@ -64,6 +64,8 @@ check modules
       /data/part0/
       /data/part0/tmp/galaxy-var-tmp
 
+- checks the correctness of the letsencrypt privkey files permissions
+
 
 005-nfsexports
 
@@ -73,3 +75,7 @@ check modules
 006-postgres
 
 - checks whether the postgresql db is open and readable
+
+007-rabbitmq
+
+- checks the rabbitmq listener for port 5672 and 5671 (ssl)

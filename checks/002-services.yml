@@ -1,6 +1,6 @@
 ---
 
-- name: Check if autofs has been disabled on slurm nodes
+- name: 002 Check if autofs has been disabled on slurm nodes
   command: /usr/bin/systemctl status autofs
   when: cvmfsnfsclient is defined
   ignore_errors: yes 
@@ -11,7 +11,7 @@
     ("enabled; vendor preset" in service_status.stdout)
   tags: check_services\
 
-- name: Check if generic services  are running
+- name: 002 Check if generic services  are running
   command: /usr/bin/systemctl status {{ gservice_item }}
   with_items:
     - fail2ban
@@ -31,7 +31,7 @@
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
 
-- name: Check if services on main node are running usegalaxy.no
+- name: 002 Check if services on main node are running usegalaxy.no
   command: /usr/bin/systemctl status {{ mservice_item }}
   when: mainnode is defined
   with_items:
@@ -52,7 +52,7 @@
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
 
-- name: Check if services on main node are running usegalaxy.no
+- name: 002 Check if services on main node are running usegalaxy.no
   command: /usr/bin/systemctl status {{ m2service_item }}
   when: mainnode is defined
   with_items:
@@ -67,7 +67,7 @@
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
 
-- name: Check if services on main node are running usegalaxy.no
+- name: 002 Check if services on main node are running usegalaxy.no
   command: /usr/bin/systemctl status {{ m3service_item }}
   when: mainnode is defined
   with_items:
@@ -83,7 +83,7 @@
   tags: check_services
 
 
-- name: Check if  services on slurm nodes are running
+- name: 002 Check if  services on slurm nodes are running
   command: /usr/bin/systemctl status {{ gservice_item }}
   when: slurmnode is defined
   with_items:
@@ -98,7 +98,7 @@
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
 
-- name: Check if services on database node are running db.usegalaxy.no
+- name: 002 Check if services on database node are running db.usegalaxy.no
   command: /usr/bin/systemctl status {{ dbservice_item }}
   when: dbnode is defined
   with_items:

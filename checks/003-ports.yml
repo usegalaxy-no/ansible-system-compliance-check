@@ -1,6 +1,6 @@
 ---
 
-- name: check if ports on main node are open
+- name: 003 check if ports on main node are open
   when: mainnode is defined
   wait_for:
     host: "{{ ansible_default_ipv4.address }}"
@@ -19,7 +19,7 @@
     loop_var: mport_item
   tags: check_ports
 
-- name: check if ports on db node are open
+- name: 003 check if ports on db node are open
   when: dbnode is defined
   wait_for:
     host: "{{ ansible_default_ipv4.address }}"

@@ -1,0 +1,12 @@
+---
+
+- name: 007 check rabbitmq server listener
+  shell: rabbitmq-diagnostics listeners 2>/dev/null
+  when: dbnode is defined
+  ignore_errors: yes 
+  changed_when: false
+  register: rabbitlistener_status
+  failed_when: >
+    ("port: 5672, protocol" not in rabbitlistener_status.stdout) or
+    ("port: 5671, protocol" not in rabbitlistener_status.stdout)
+  tags: check_rabbit
