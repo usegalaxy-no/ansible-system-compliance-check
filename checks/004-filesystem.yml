@@ -20,3 +20,13 @@
   failed_when: >
     ("drwxrwxrwx" not in permission_status.stdout)
   tags: check_filesystem
+  
+- name: Check permission letsencrypt key files on the db node
+  when: dbnode is defined
+  command: 
+  ignore_errors: yes
+  changed_when: false
+  register: permission_status
+  failed_when: >
+    ("---" in permission_status.stdout)
+  tags: check_filesystem
