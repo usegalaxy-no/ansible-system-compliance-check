@@ -42,6 +42,7 @@
     - autofs
     - nginx
     - docker
+    - eccd
   loop_control:
     loop_var: mservice_item
   ignore_errors: yes 
