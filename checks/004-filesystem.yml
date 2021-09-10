@@ -30,3 +30,13 @@
   failed_when: >
     ("---" in keypermission_status.stdout)
   tags: check_filesystem
+
+- name: 004 Check permission /srv/galaxy/server/dependencies/ on the main node
+  when: mainnode is defined
+  command: ls -lisad /srv/galaxy/server/dependencies
+  ignore_errors: yes
+  changed_when: false
+  register: permission_status
+  failed_when: >
+    ("drwxr-xr-x." not in permission_status.stdout)
+  tags: check_filesystem
