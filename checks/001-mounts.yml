@@ -1,15 +1,15 @@
 ---
 
-- name: 001 Check if cvmfs nfs are mounted
-  when: cvmfsnfsclient is defined
-  command: mount
-  ignore_errors: yes
-  changed_when: false
-  register: mount_status
-  failed_when: >
-    ("usegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
-    ("usegalaxy.no:/cvmfs/data.usegalaxy.no on /cvmfs/data.usegalaxy.no" not in mount_status.stdout)
-  tags: check_mounts
+#- name: 001 Check if cvmfs nfs are mounted
+#  when: cvmfsnfsclient is defined
+#  command: mount
+#  ignore_errors: yes
+#  changed_when: false
+#  register: mount_status
+#  failed_when: >
+#    ("usegalaxy.no:/cvmfs/data.galaxyproject.org on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
+#    ("usegalaxy.no:/cvmfs/data.usegalaxy.no on /cvmfs/data.usegalaxy.no" not in mount_status.stdout)
+#  tags: check_mounts
 
 - name: 001 Check if  nfs are mounted
   when: galaxynfsclient is defined
@@ -28,8 +28,5 @@
   changed_when: false
   register: mount_status
   failed_when: >
-    ("/etc/auto.cvmfs on /cvmfs" not in mount_status.stdout) or
-    ("cvmfs2 on /cvmfs/data.galaxyproject.org" not in mount_status.stdout) or
-    ("cvmfs2 on /cvmfs/data.usegalaxy.no" not in mount_status.stdout) or
-    ("cvmfs2 on /cvmfs/cvmfs-config.galaxyproject.org" not in mount_status.stdout)
+    ("/etc/auto.cvmfs on /cvmfs" not in mount_status.stdout)
   tags: check_mounts

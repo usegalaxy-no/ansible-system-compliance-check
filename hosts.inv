@@ -12,4 +12,3 @@ nrec2.usegalaxy.no ansible_host=158.39.77.14 ansible_user=sysadmin trusted_host=
 [cvmfsstratum0servers]
 cvmfs0.usegalaxy.no ansible_host=158.37.7.53 ansible_user=sysadmin
 
-

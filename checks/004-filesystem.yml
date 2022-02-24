@@ -7,7 +7,7 @@
   changed_when: false
   register: permission_status
   failed_when: >
-    ("drwxr-x---." not in permission_status.stdout) or
+    ("drwxrwxrwx." not in permission_status.stdout) or
     ("galaxy galaxy" not in permission_status.stdout)
   tags: check_filesystem
 
