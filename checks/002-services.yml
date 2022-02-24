@@ -118,3 +118,19 @@
     ("active (running)" not in service_status.stdout) or
     ("enabled; vendor preset" not in service_status.stdout)
   tags: check_services
+
+- name: 002 Check if services on cvmfsproy node 
+  command: /usr/bin/systemctl status {{ cproxy_item }}
+  when: cproxy is defined
+  with_items:
+    - squid
+  loop_control:
+    loop_var: cproxy_item
+  ignore_errors: yes 
+  changed_when: false
+  register: service_status
+  failed_when: >
+    ("active (running)" not in service_status.stdout) or
+    ("enabled; vendor preset" not in service_status.stdout)
+  tags: check_services
+

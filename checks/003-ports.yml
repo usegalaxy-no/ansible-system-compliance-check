@@ -38,3 +38,19 @@
   loop_control:
     loop_var: dbport_item
   tags: check_ports
+
+
+- name: 003 check if ports on cvmfsproxy node are open
+  when: cproxy is defined
+  wait_for:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: "{{ cproxyport_item }}"
+    state: started
+    delay: 0
+    timeout: 3
+  ignore_errors: yes
+  with_items:
+    - 3128
+  loop_control:
+    loop_var: cproxyport_item
+  tags: check_ports
